@@ -1,4 +1,4 @@
-package capstone.iscargo;
+package capstone.iscargo.activity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -11,45 +11,30 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class MainActivity extends AppCompatActivity {
+import capstone.iscargo.R;
+import capstone.iscargo.fragment.FragmentChatting;
+import capstone.iscargo.fragment.FragmentFriends;
+import capstone.iscargo.fragment.FragmentSetting;
+import capstone.iscargo.fragment.FragmentTasks;
+
+public class ActivityMain extends AppCompatActivity {
     private static class SubActivity {
-        private Fragment fragment;
-        private int id;
-        private String title;
+        public Fragment fragment;
+        public int id;
+        public String title;
 
         public SubActivity(Fragment fragment, int id, String title) {
             this.fragment = fragment;
             this.id = id;
             this.title = title;
         }
-
-        public Fragment getFragment() {
-            return fragment;
-        }
-        public void setFragment(Fragment fragment) {
-            this.fragment = fragment;
-        }
-
-        public int getId() {
-            return id;
-        }
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public String getTitle() {
-            return title;
-        }
-        public void setTitle(String title) {
-            this.title = title;
-        }
     }
 
     private static SubActivity subActivity[] = {
-            new SubActivity(new Friends(), R.id.friends, "친구"),
-            new SubActivity(new Chatting(), R.id.chatting, "채팅"),
-            new SubActivity(new Tasks(), R.id.tasks, "업무 목록"),
-            new SubActivity(new Setting(), R.id.setting, "더보기")
+            new SubActivity(new FragmentFriends(), R.id.friends, "친구"),
+            new SubActivity(new FragmentChatting(), R.id.chatting, "채팅"),
+            new SubActivity(new FragmentTasks(), R.id.tasks, "업무 목록"),
+            new SubActivity(new FragmentSetting(), R.id.setting, "더보기")
     };
 
     private TextView title;
@@ -60,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         title = (TextView)findViewById(R.id.title);
-        title.setText(subActivity[0].getTitle());
+        title.setText(subActivity[0].title);
 
         setInitialDisplay();
         setBottomMenu();
@@ -88,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setInitialDisplay() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.container, subActivity[0].getFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, subActivity[0].fragment).commit();
     }
 
     private void setBottomMenu() {
@@ -97,9 +82,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
                 for (int index = 0; index < subActivity.length; index++)
-                    if (item.getItemId() == subActivity[index].getId()) {
-                        getSupportFragmentManager().beginTransaction().replace(R.id.container, subActivity[index].getFragment()).commit();
-                        title.setText(subActivity[index].getTitle());
+                    if (item.getItemId() == subActivity[index].id) {
+                        getSupportFragmentManager()
+                                .beginTransaction()
+                                .replace(R.id.fragment, subActivity[index].fragment)
+                                .commit();
+                        title.setText(subActivity[index].title);
                         return true;
                     }
 

@@ -1,12 +1,14 @@
-package capstone.iscargo;
+package capstone.iscargo.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class Chatting extends androidx.fragment.app.Fragment {
-    public Chatting() {
+import capstone.iscargo.R;
+
+public class FragmentTasks extends androidx.fragment.app.Fragment {
+    public FragmentTasks() {
 
     }
 
@@ -17,6 +19,6 @@ public class Chatting extends androidx.fragment.app.Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.chatting, container, false);
+        return inflater.inflate(R.layout.fragment_tasks, container, false);
     }
 }

@@ -5,23 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.ActivityMain">
 
     <TextView
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:paddingTop="20dp"
         android:paddingLeft="30dp"
-        android:paddingBottom="15dp"
+        android:paddingVertical="12dp"
         android:textSize="25dp"
         android:textStyle="bold"
         android:textColor="@color/black"
-        android:hint="제목"/> <!-- 디버그 -->
+        android:hint="제목"/>
 
     <FrameLayout
-        android:id="@+id/container"
+        android:id="@+id/fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNavigationView"
@@ -32,10 +31,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:paddingVertical="5dp"
-        android:background="@drawable/bottom_menu_theme"
-        app:itemIconTint="@drawable/menu_selector_color"
-        app:itemTextColor="@drawable/menu_selector_color"
-        app:menu="@menu/bottom_menu" />
+        android:background="@drawable/theme_background_bottom_tab"
+        app:itemIconTint="@drawable/theme_color_click_bottom_tab"
+        app:itemTextColor="@drawable/theme_color_click_bottom_tab"
+        app:labelVisibilityMode="unlabeled"
+        app:menu="@menu/menu_bottom_tab" />
 
 </RelativeLayout>

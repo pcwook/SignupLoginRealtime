@@ -2,23 +2,23 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/friendsLayout"
     android:layout_width="match_parent"
-    android:layout_height="80dp"
+    android:layout_height="60dp"
     android:orientation="vertical"
     android:paddingVertical="10dp"
-    android:paddingHorizontal="20dp">
+    android:paddingHorizontal="20dp"
+    android:background="?android:attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/profileImage"
-        android:layout_width="60dp"
+        android:layout_width="40dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="15dp"
-        app:srcCompat="@drawable/default_profile_image" />
+        app:srcCompat="@drawable/image_default_icon_profile" />
 
     <LinearLayout
-        android:layout_width="160dp"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_vertical"
@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
-            android:textSize="16dp"
+            android:textSize="14dp"
             android:textColor="@color/black"
             android:text="지상원"/>
 
@@ -37,7 +37,7 @@
             android:id="@+id/company"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
+            android:textSize="11dp"
             android:text="영진전문대학교" />
 
     </LinearLayout>
@@ -55,8 +55,8 @@
             android:layout_height="wrap_content"
             android:paddingVertical="4dp"
             android:paddingHorizontal="8dp"
-            android:background="@drawable/phone_number_theme"
-            android:textSize="13dp"
+            android:background="@drawable/theme_background_phone_number"
+            android:textSize="11dp"
             android:text="010-1234-5678" />
 
     </LinearLayout>
