@@ -1,6 +1,5 @@
 package capstone.iscargo;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
@@ -8,15 +7,28 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Friends extends androidx.fragment.app.Fragment {
-    public Friends() {
+public class Friends extends Fragment {
+    public class Entity {
+        String profileImage;
+        String name;
+        String company;
+        String phoneNumber;
 
+        public Entity(String name, String company, String phoneNumber) {
+            this("", name, company, phoneNumber);
+        }
+
+        public Entity(String profileImage, String name, String company, String phoneNumber) {
+            this.profileImage = profileImage;
+            this.name = name;
+            this.company = company;
+            this.phoneNumber = phoneNumber;
+        }
     }
 
     @Override
@@ -30,59 +42,26 @@ public class Friends extends androidx.fragment.app.Fragment {
 
         RecyclerView recyclerView = view.findViewById(R.id.friendsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new FriendsAdapter(view.getContext(), getNames(), getCompanies()));
+        recyclerView.setAdapter(new FriendsAdapter(view.getContext(), getEntities()));
 
         return view;
     }
 
-    @Override
-    public void onCreateContextMenu(ContextMenu menu, View view, ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, view, menuInfo);
+    // 테스트용 데이터 생성 함수
+    private Entity[] getEntities() {
+        final int SIZE = 100;
 
-        for (int i = 1; i <= 4; i++)
-            menu.add(0, i, 0, "Test");
-    }
+        Entity entities[] = new Entity[SIZE];
+        String members[] = {"지상원", "이성민", "강형준", "박찬욱", "이수환"};
 
-    @Override
-    public boolean onContextItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case 1:
+        for (int row = 0, width = members.length; row < SIZE / width; row++)
+            for (int index = 0, column = row * width; index < 5; index++, column++) {
+                String company = column % 2 == 0 ? "영진전문대학교" : "YJ University";
+                String phoneNumber = column % 2 == 0 ? "010-1234-5678" : "010-8765-4321";
 
-                break;
-            case 2:
+                entities[column] = new Entity(members[index], company, phoneNumber);
+            }
 
-                break;
-            case 3:
-
-                break;
-            case 4:
-
-                break;
-            default:
-                return super.onContextItemSelected(item);
-        }
-        return true;
-    }
-
-    // 테스트용 데이터 생성
-    private String[] getNames() {
-        String[] names = new String[100];
-        String[] testNames = {"이성민", "지상원", "강형준", "박찬욱", "이수환"};
-
-        for (int r = 0; r < 100; r += 5)
-            for (int i = 0, c = r; i < 5; i++, c++)
-                names[c] = testNames[i];
-
-        return names;
-    }
-
-    // 테스트용 데이터 생성
-    private String[] getCompanies() {
-        String[] companies = new String[100];
-
-        for (int i = 0; i < 100; i++)
-            companies[i] = "영진전문대학교";
-
-        return companies;
+        return entities;
     }
 }
