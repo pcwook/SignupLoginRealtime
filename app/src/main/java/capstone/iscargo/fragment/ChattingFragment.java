@@ -1,22 +1,28 @@
 package capstone.iscargo.fragment;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
-import capstone.iscargo.fragment.adapter.ChattingListAdapter;
 import capstone.iscargo.R;
+import capstone.iscargo.fragment.adapter.ChattingListAdapter;
 import capstone.iscargo.fragment.entity.ChattingEntity;
 
 public class ChattingFragment extends Fragment {
+    private ChattingListAdapter chattingListAdapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,18 +32,41 @@ public class ChattingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.chatting_fragment, container, false);
 
-        RecyclerView recyclerView = view.findViewById(R.id.chattingList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new ChattingListAdapter(getEntities()));
+        setViewEntity(view);
+        setRecyclerView(view);
 
         return view;
     }
 
-    // 테스트용 데이터 입력 함수
-    private ChattingEntity[] getEntities() {
-        final int SIZE = 100;
+    private void setViewEntity(View view) {
+        ((EditText)view.findViewById(R.id.chattingSearch)).addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
-        ChattingEntity entities[] = new ChattingEntity[SIZE];
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                chattingListAdapter.getFilter().filter(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+    }
+
+    private void setRecyclerView(View view) {
+        chattingListAdapter = new ChattingListAdapter(getEntities());
+        RecyclerView recyclerView = view.findViewById(R.id.chattingList);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
+        recyclerView.setAdapter(chattingListAdapter);
+    }
+
+    // 테스트용 데이터 입력 함수
+    private ArrayList<ChattingEntity> getEntities() {
+        ArrayList<ChattingEntity> entities = new ArrayList<>();
         String titles[] = {
                 "캡스톤디자인(I) 채팅방",
                 "자료구조 채팅방",
@@ -55,20 +84,17 @@ public class ChattingFragment extends Fragment {
         };
         Calendar date = Calendar.getInstance();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM-dd");
-        date.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
+        date.set(
+                date.get(Calendar.YEAR),
+                date.get(Calendar.MONTH),
+                date.get(Calendar.DAY_OF_MONTH));
 
-        for (int index = 0, titleIndex = 0, contentIndex = 0; index < SIZE; index++) {
-            entities[index] = new ChattingEntity(
-                    titles[titleIndex++],
-                    contents[contentIndex++],
+        for (int index = 0, titleIndex = 0, contentIndex = 0; index < 100; index++)
+            entities.add(new ChattingEntity(
+                    titles[titleIndex++ % titles.length],
+                    contents[contentIndex++ % contents.length],
                     simpleDateFormat.format(date.getTime()),
-                    index);
-
-            if (titleIndex == titles.length)
-                titleIndex = 0;
-            if (contentIndex == contents.length)
-                contentIndex = 0;
-        }
+                    index));
 
         return entities;
     }

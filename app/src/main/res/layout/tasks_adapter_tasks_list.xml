@@ -31,6 +31,7 @@
             android:layout_marginRight="20dp"
             android:paddingVertical="4dp"
             android:background="@drawable/theme_tasks_button_background"
+            android:foreground="?android:attr/selectableItemBackground"
             android:textSize="16dp"
             android:text="주세요"/>
 
@@ -43,6 +44,7 @@
             android:layout_marginLeft="20dp"
             android:paddingVertical="4dp"
             android:background="@drawable/theme_tasks_button_background"
+            android:foreground="?android:attr/selectableItemBackground"
             android:textSize="16dp"
             android:text="이동" />
 

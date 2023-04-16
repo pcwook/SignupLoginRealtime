@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import capstone.iscargo.R;
-import capstone.iscargo.fragment.entity.TasksEntity;
 import capstone.iscargo.fragment.listener.TasksGroupClickListener;
 
 public class TasksGroupAdapter extends RecyclerView.Adapter<TasksGroupAdapter.ViewHolder> {
@@ -26,12 +25,12 @@ public class TasksGroupAdapter extends RecyclerView.Adapter<TasksGroupAdapter.Vi
     }
 
     private ArrayList<String> groupTitles;
-    private TasksGroupClickListener listener;
+    private TasksGroupClickListener tasksGroupClickListener;
     private int selectedGroupPosition;
 
     public TasksGroupAdapter(ArrayList<String> groupTitles, TasksGroupClickListener listener, int selectedGroupPosition) {
         this.groupTitles = groupTitles;
-        this.listener = listener;
+        this.tasksGroupClickListener = listener;
         this.selectedGroupPosition = selectedGroupPosition;
     }
 
@@ -50,7 +49,7 @@ public class TasksGroupAdapter extends RecyclerView.Adapter<TasksGroupAdapter.Vi
             public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                 if (isChecked) {
                     selectedGroupPosition = holder.getAdapterPosition();
-                    listener.onClick(selectedGroupPosition);
+                    tasksGroupClickListener.onClick(selectedGroupPosition, holder.groupTitle.getText().toString());
                 }
             }
         });
