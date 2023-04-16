@@ -12,29 +12,29 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import capstone.iscargo.R;
-import capstone.iscargo.fragment.FragmentChatting;
-import capstone.iscargo.fragment.FragmentFriends;
-import capstone.iscargo.fragment.FragmentSetting;
-import capstone.iscargo.fragment.FragmentTasks;
+import capstone.iscargo.fragment.ChattingFragment;
+import capstone.iscargo.fragment.FriendsFragment;
+import capstone.iscargo.fragment.SettingFragment;
+import capstone.iscargo.fragment.TasksFragment;
 
-public class ActivityMain extends AppCompatActivity {
-    private static class SubActivity {
+public class MainActivity extends AppCompatActivity {
+    private static class Fragments {
         public Fragment fragment;
         public int id;
         public String title;
 
-        public SubActivity(Fragment fragment, int id, String title) {
+        public Fragments(Fragment fragment, int id, String title) {
             this.fragment = fragment;
             this.id = id;
             this.title = title;
         }
     }
 
-    private static SubActivity subActivity[] = {
-            new SubActivity(new FragmentFriends(), R.id.friends, "친구"),
-            new SubActivity(new FragmentChatting(), R.id.chatting, "채팅"),
-            new SubActivity(new FragmentTasks(), R.id.tasks, "업무 목록"),
-            new SubActivity(new FragmentSetting(), R.id.setting, "더보기")
+    private static Fragments fragments[] = {
+            new Fragments(new FriendsFragment(), R.id.friends, "친구"),
+            new Fragments(new ChattingFragment(), R.id.chatting, "채팅"),
+            new Fragments(new TasksFragment(), R.id.tasks, "업무 목록"),
+            new Fragments(new SettingFragment(), R.id.setting, "더보기")
     };
 
     private TextView title;
@@ -44,9 +44,6 @@ public class ActivityMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        title = (TextView)findViewById(R.id.title);
-        title.setText(subActivity[0].title);
-
         setInitialDisplay();
         setBottomMenu();
     }
@@ -54,17 +51,11 @@ public class ActivityMain extends AppCompatActivity {
     @Override
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.test1:
-                Toast.makeText(getApplicationContext(), "test1", Toast.LENGTH_SHORT).show();
+            case R.id.friendsMenuChatting:
+                Toast.makeText(getApplicationContext(), "채팅 연결", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.test2:
-                Toast.makeText(getApplicationContext(), "test2", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.test3:
-                Toast.makeText(getApplicationContext(), "test3", Toast.LENGTH_SHORT).show();
-                break;
-            case R.id.test4:
-                Toast.makeText(getApplicationContext(), "test4", Toast.LENGTH_SHORT).show();
+            case R.id.friendsMenuDelete:
+                Toast.makeText(getApplicationContext(), "친구 삭제", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 return false;
@@ -73,7 +64,10 @@ public class ActivityMain extends AppCompatActivity {
     }
 
     private void setInitialDisplay() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, subActivity[0].fragment).commit();
+        title = (TextView)findViewById(R.id.title);
+        title.setText(fragments[0].title);
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment, fragments[0].fragment).commit();
     }
 
     private void setBottomMenu() {
@@ -81,13 +75,13 @@ public class ActivityMain extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(MenuItem item) {
-                for (int index = 0; index < subActivity.length; index++)
-                    if (item.getItemId() == subActivity[index].id) {
+                for (int index = 0; index < fragments.length; index++)
+                    if (item.getItemId() == fragments[index].id) {
                         getSupportFragmentManager()
                                 .beginTransaction()
-                                .replace(R.id.fragment, subActivity[index].fragment)
+                                .replace(R.id.fragment, fragments[index].fragment)
                                 .commit();
-                        title.setText(subActivity[index].title);
+                        title.setText(fragments[index].title);
                         return true;
                     }
 

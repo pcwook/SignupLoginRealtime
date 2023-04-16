@@ -4,7 +4,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:orientation="vertical"
     android:paddingVertical="10dp"
     android:paddingHorizontal="20dp"
     android:background="?android:attr/selectableItemBackground">
@@ -15,7 +14,7 @@
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="15dp"
-        app:srcCompat="@drawable/image_default_icon_chatting" />
+        app:srcCompat="@drawable/image_chatting_default_icon" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -25,7 +24,7 @@
         android:layout_toRightOf="@id/chattingImage">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/chattingTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -34,7 +33,7 @@
             android:text="제목"/>
 
         <TextView
-            android:id="@+id/content"
+            android:id="@+id/chattingContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="11dp"
@@ -50,7 +49,7 @@
         android:layout_alignParentRight="true">
 
         <TextView
-            android:id="@+id/date"
+            android:id="@+id/chattingDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="11dp"
@@ -63,11 +62,11 @@
             android:layout_gravity="end">
 
             <TextView
-                android:id="@+id/unreadCount"
+                android:id="@+id/chattingUnreadCount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="8dp"
-                android:background="@drawable/theme_color_chatting_unread"
+                android:background="@drawable/theme_chatting_unread_background"
                 android:textAlignment="textEnd"
                 android:textSize="11dp"
                 android:textColor="@color/white"

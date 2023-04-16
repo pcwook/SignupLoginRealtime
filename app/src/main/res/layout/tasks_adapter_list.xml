@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:id="@+id/tasksUser"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingVertical="10dp"
+        android:paddingHorizontal="20dp"
+        android:background="@drawable/theme_tasks_user_background">
+
+        <ImageView
+            android:id="@+id/tasksProfileImage"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_marginRight="15dp"
+            app:srcCompat="@drawable/image_friends_default_icon" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center_vertical"
+            android:layout_toRightOf="@id/tasksProfileImage">
+
+            <TextView
+                android:id="@+id/tasksUserName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="14dp"
+                android:textColor="@color/black"
+                android:text="(에어맨로직스) 김희곤 부장"/>
+
+            <TextView
+                android:id="@+id/tasksDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="11dp"
+                android:text="2023. 03. 25 16 : 45" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tasksTasksList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tasksUser"
+        tools:listitem="@layout/tasks_adapter_tasks_list" />
+
+</RelativeLayout>

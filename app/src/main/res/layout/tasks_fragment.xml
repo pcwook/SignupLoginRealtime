@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragment.TasksFragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/tasksSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginHorizontal="20dp"
+            android:padding="10dp"
+            android:background="@drawable/theme_search_background"
+            android:drawableLeft="@drawable/theme_search_icon"
+            android:drawablePadding="10dp"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:textSize="12dp"
+            android:hint="업무 검색" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tasksGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_below="@id/tasksSearch"
+            tools:listitem="@layout/tasks_adapter_group" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/tasksList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/tasksGroup"
+            tools:listitem="@layout/tasks_adapter_list" />
+
+    </RelativeLayout>
+
+</FrameLayout>

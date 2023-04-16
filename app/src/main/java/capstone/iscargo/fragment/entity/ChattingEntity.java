@@ -1,21 +1,21 @@
 package capstone.iscargo.fragment.entity;
 
-public class EntityChatting {
+public class ChattingEntity {
     private String chattingImage;
     private String title;
     private String content;
     private String date;
     private int unreadCount;
 
-    public EntityChatting(String title, String content, String date) {
+    public ChattingEntity(String title, String content, String date) {
         this(title, content, date, 0);
     }
 
-    public EntityChatting(String title, String content, String date, int unreadCount) {
+    public ChattingEntity(String title, String content, String date, int unreadCount) {
         this("", title, content, date, unreadCount);
     }
 
-    public EntityChatting(String chattingImage, String title, String content, String date, int unreadCount) {
+    public ChattingEntity(String chattingImage, String title, String content, String date, int unreadCount) {
         this.chattingImage = chattingImage;
         this.title = title;
         this.content = content;

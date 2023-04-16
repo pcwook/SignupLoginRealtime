@@ -12,11 +12,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import capstone.iscargo.fragment.adapter.AdapterChatting;
+import capstone.iscargo.fragment.adapter.ChattingListAdapter;
 import capstone.iscargo.R;
-import capstone.iscargo.fragment.entity.EntityChatting;
+import capstone.iscargo.fragment.entity.ChattingEntity;
 
-public class FragmentChatting extends Fragment {
+public class ChattingFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,20 +24,20 @@ public class FragmentChatting extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_chatting, container, false);
+        View view = inflater.inflate(R.layout.chatting_fragment, container, false);
 
         RecyclerView recyclerView = view.findViewById(R.id.chattingList);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-        recyclerView.setAdapter(new AdapterChatting(view.getContext(), getEntities()));
+        recyclerView.setAdapter(new ChattingListAdapter(getEntities()));
 
         return view;
     }
 
     // 테스트용 데이터 입력 함수
-    private EntityChatting[] getEntities() {
+    private ChattingEntity[] getEntities() {
         final int SIZE = 100;
 
-        EntityChatting entities[] = new EntityChatting[SIZE];
+        ChattingEntity entities[] = new ChattingEntity[SIZE];
         String titles[] = {
                 "캡스톤디자인(I) 채팅방",
                 "자료구조 채팅방",
@@ -58,7 +58,7 @@ public class FragmentChatting extends Fragment {
         date.set(Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH);
 
         for (int index = 0, titleIndex = 0, contentIndex = 0; index < SIZE; index++) {
-            entities[index] = new EntityChatting(
+            entities[index] = new ChattingEntity(
                     titles[titleIndex++],
                     contents[contentIndex++],
                     simpleDateFormat.format(date.getTime()),

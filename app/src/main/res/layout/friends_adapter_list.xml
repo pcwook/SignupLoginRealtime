@@ -4,28 +4,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="60dp"
-    android:orientation="vertical"
     android:paddingVertical="10dp"
     android:paddingHorizontal="20dp"
     android:background="?android:attr/selectableItemBackground">
 
     <ImageView
-        android:id="@+id/profileImage"
+        android:id="@+id/friendsProfileImage"
         android:layout_width="40dp"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="15dp"
-        app:srcCompat="@drawable/image_default_icon_profile" />
+        app:srcCompat="@drawable/image_friends_default_icon" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_vertical"
-        android:layout_toRightOf="@id/profileImage">
+        android:layout_toRightOf="@id/friendsProfileImage">
 
         <TextView
-            android:id="@+id/name"
+            android:id="@+id/friendsName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="bold"
@@ -34,7 +33,7 @@
             android:text="지상원"/>
 
         <TextView
-            android:id="@+id/company"
+            android:id="@+id/friendsCompany"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="11dp"
@@ -50,12 +49,12 @@
         android:layout_alignParentRight="true">
 
         <TextView
-            android:id="@+id/phoneNumber"
+            android:id="@+id/friendsPhoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingVertical="4dp"
             android:paddingHorizontal="8dp"
-            android:background="@drawable/theme_background_phone_number"
+            android:background="@drawable/theme_phone_number_background"
             android:textSize="11dp"
             android:text="010-1234-5678" />
 

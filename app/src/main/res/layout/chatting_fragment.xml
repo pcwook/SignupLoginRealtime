@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.FragmentChatting">
+    tools:context=".fragment.ChattingFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -17,8 +17,8 @@
             android:layout_marginBottom="12dp"
             android:layout_marginHorizontal="20dp"
             android:padding="10dp"
-            android:background="@drawable/theme_background_search"
-            android:drawableLeft="@drawable/theme_resize_search_icon"
+            android:background="@drawable/theme_search_background"
+            android:drawableLeft="@drawable/theme_search_icon"
             android:drawablePadding="10dp"
             android:singleLine="true"
             android:maxLines="1"
